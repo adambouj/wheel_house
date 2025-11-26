@@ -46,15 +46,28 @@ public class UserService {
 //
 //        return ur.save(u);
 //    }
+//public UserDto updateUser(Long id, UserDto dto) {
+//
+//    User u = ur.findById(id)
+//            .orElseThrow(() -> new RuntimeException("User not found"));
+//
+//    u.setUserName(dto.getUserName());
+//    u.setPassword(dto.getPassword());
+//
+//    User saved = ur.save(u);
+//    return um.toDto(saved);
+//}
 public UserDto updateUser(Long id, UserDto dto) {
-
-    User u = ur.findById(id)
+    User user = ur.findById(id)
             .orElseThrow(() -> new RuntimeException("User not found"));
 
-    u.setUserName(dto.getUserName());
-    u.setPassword(dto.getPassword());
+    user.setUserName(dto.getUserName());
+    user.setPassword(dto.getPassword());
 
-    User saved = ur.save(u);
+    // Update roles using mapper
+    user.setRoles(um.toUser(dto).getRoles());
+
+    User saved = ur.save(user);
     return um.toDto(saved);
 }
     public void deleteUser(Long id) {

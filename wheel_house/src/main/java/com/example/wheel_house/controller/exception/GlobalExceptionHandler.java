@@ -1,4 +1,4 @@
-package com.example.wheel_house.controller;
+package com.example.wheel_house.controller.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
